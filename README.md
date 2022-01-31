@@ -2,6 +2,8 @@
 
 This is a simple SPA with React - an application for intuitive cart approval process for parents.
 
+The deployed application can be viewed [here](https://zealous-villani-91b292.netlify.app/).
+
 ## First Step
 
 Clone the repo:
@@ -28,14 +30,14 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser af
 
 ### 2.3
 
-To launch the test runner in the interactive watch mode.
+To launch the test runner in the interactive watch mode:
 
 ### `npm test`
 
 ### 2.4
 
 To build the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+It correctly bundles React in production mode and optimizes the build for the best performance:
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
