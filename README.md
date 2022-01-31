@@ -2,6 +2,8 @@
 
 This is a simple SPA with React - an application for intuitive cart approval process for parents.
 
+The deployed application can be viewed [here](https://zealous-villani-91b292.netlify.app/).
+
 ## First Step
 
 Clone the repo:
