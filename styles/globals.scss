@@ -1,0 +1,880 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: "Franklin Gothic Book", arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+$border-color: #e3ebf6;
+$custom-color: #62bfad;
+$background-color: #f9fbfd;
+$discarded-color: #95aac9;
+$success: #00d97e;
+$light-green: #ccf7e5;
+$logo-red: red;
+$placeholder: #e6e6e6;
+
+@mixin mediumScreen {
+  @media only screen and (min-width: 769px) and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin smallScreen {
+  @media only screen and (max-width: 768.9px) {
+    @content;
+  }
+}
+
+html,
+body,
+#__next {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+body {
+  margin: 0 !important;
+}
+
+.main-body {
+  display: flex;
+  height: 100%;
+
+  @include smallScreen {
+    font-size: 12px !important;
+  }
+}
+
+.body-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-header {
+  display: flex;
+  border-bottom: 2px solid $border-color;
+  flex: 1 1 15%;
+
+  & > :nth-child(1) {
+    display: flex;
+    margin: 0 auto 0 2rem;
+    align-items: center;
+
+    & > :nth-child(1) {
+      color: $custom-color;
+      margin-right: 0.5rem;
+    }
+
+    & > :nth-child(2) {
+      color: white;
+      background-color: $logo-red;
+      border-radius: 10px;
+      border: 5px solid $logo-red;
+    }
+  }
+
+  & > :nth-child(2) {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 2rem;
+  }
+}
+
+.checkout-button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 5px 2rem;
+  border-top: 2px solid $border-color;
+  flex: 1 1 10%;
+}
+
+.help-text:hover {
+  color: $custom-color !important;
+  border-bottom: 3px solid $custom-color;
+}
+
+.help {
+  position: relative;
+  text-decoration: none;
+  font-weight: bolder;
+  margin-right: 3rem;
+  cursor: pointer;
+  color: $discarded-color;
+  transition: all 0.35s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    top: 1.5rem;
+    background-color: $custom-color;
+    visibility: hidden;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+  }
+
+  &:hover {
+    color: $custom-color;
+
+    &::before {
+      visibility: visible;
+      -webkit-transform: scaleX(1);
+      transform: scaleX(1);
+    }
+  }
+}
+
+.carts-body {
+  background-color: $background-color;
+  overflow-y: auto;
+  height: 100%;
+  position: relative;
+  flex: 1 1 85%;
+  padding-bottom: 5rem;
+}
+
+.wishlists-body {
+  background-color: $background-color;
+  overflow-y: auto;
+  height: 100%;
+  position: relative;
+  flex: 1 1 75%;
+}
+
+.return-arrow {
+  margin: 1% 5% 0;
+  color: $discarded-color;
+  cursor: pointer;
+
+  @include smallScreen {
+    margin-top: 5%;
+  }
+}
+
+.successful-save {
+  color: $success;
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 2% 0;
+
+  @include smallScreen {
+    font-size: 1rem;
+  }
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: 60%;
+  grid-auto-rows: auto;
+  gap: 3rem;
+  grid-auto-flow: row;
+  justify-content: center;
+  padding: 1% 0 3%;
+
+  @include mediumScreen {
+    grid-template-columns: 90% !important;
+  }
+
+  @include smallScreen {
+    grid-template-columns: 90% !important;
+  }
+
+  & > :nth-child(n + 1) {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+}
+
+.wishlist-details {
+  display: grid;
+  padding: 3% 0;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: $custom-color;
+}
+
+.card-details {
+  display: grid;
+  gap: 1rem;
+}
+
+.avatar-and-name {
+  border-bottom: 1px solid rgb(227, 235, 246);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 10%;
+  height: 10rem;
+
+  @include smallScreen {
+    margin: 0 1rem;
+  }
+
+  & > :nth-child(2):hover {
+    color: $custom-color;
+    cursor: pointer;
+  }
+}
+
+.card-avatar {
+  display: flex;
+  align-items: center;
+
+  & > :nth-child(1) {
+    margin-right: 0.4rem !important;
+  }
+}
+
+.card-name {
+  font-weight: 600;
+}
+
+.details-and-delete {
+  border-top: 1px solid rgb(227, 235, 246);
+}
+
+.details {
+  cursor: pointer;
+
+  &:hover {
+    color: black !important;
+  }
+}
+
+.delete {
+  cursor: pointer;
+
+  &:hover {
+    color: black !important;
+  }
+}
+
+.placeholder-avatar-and-name,
+.placeholder-details {
+  background-color: $placeholder;
+  border: 0.3rem solid $placeholder;
+  width: 90%;
+  border-radius: 2rem;
+}
+
+.placeholder-avatar-and-name {
+  margin: 0 5%;
+  height: 30%;
+}
+
+.placeholder-details {
+  height: 80%;
+}
+
+.error-loading,
+.empty-wishlist {
+  justify-content: center;
+  width: 100%;
+  margin: 2rem auto 0;
+  display: flex;
+  font-weight: bold;
+  color: $custom-color;
+  position: absolute;
+  grid-row: unset !important;
+  grid-column: unset !important;
+}
+
+.page-title {
+  margin: 2% 5%;
+  font-weight: bold;
+  border-bottom: 1px solid $border-color;
+  height: 3rem;
+  width: 90%;
+
+  @include smallScreen {
+    margin-top: 5%;
+  }
+}
+
+.approved-title {
+  margin: 2% 5% 0;
+  font-weight: bold;
+  height: 2rem;
+
+  @include mediumScreen {
+    margin-top: 4%;
+  }
+
+  @include smallScreen {
+    margin-top: 4%;
+  }
+}
+
+.discarded-title {
+  margin: 2% 5% 0;
+  font-weight: bold;
+  height: 2rem;
+  color: $discarded-color;
+
+  @include mediumScreen {
+    margin-top: 5%;
+  }
+
+  @include smallScreen {
+    margin-top: 5%;
+  }
+}
+
+.details-container {
+  display: flex;
+  gap: 2rem;
+  min-height: 80%;
+  width: 100%;
+  padding: 3% 10%;
+
+  @include smallScreen {
+    padding: 2% 1rem;
+  }
+}
+
+.each-detail-container {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  width: 100%;
+}
+
+.product-card {
+  display: flex;
+  width: 100%;
+  padding: 2% 4%;
+  height: 10rem;
+  align-items: center;
+
+  & > :nth-child(1) {
+    flex: 1 1 3%;
+
+    & > :nth-child(1) {
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      height: 5rem;
+      width: 5rem;
+      border: 1px solid $custom-color;
+
+      @include smallScreen {
+        height: 3rem;
+        width: 3rem;
+      }
+    }
+  }
+
+  & > :nth-child(2) {
+    flex: 1 1 67%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    margin-left: 10%;
+
+    @include smallScreen {
+      margin-left: 1rem;
+      width: 5rem;
+    }
+
+    & > :nth-child(n + 1):nth-child(-n + 2) {
+      font-weight: bold;
+    }
+
+    & > :nth-child(3) {
+      width: 5rem;
+      height: 2rem;
+      border-radius: 10px;
+      margin-right: 3rem;
+      border: 2px solid $custom-color;
+    }
+
+    & > :nth-child(4) {
+      background-color: $light-green;
+      color: $success;
+      height: fit-content;
+      border: 5px solid $light-green;
+      border-radius: 5px;
+      font-size: 12px;
+      max-width: 4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  & > :nth-child(3) {
+    flex: 1 1 30%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.empty-item {
+  font-weight: bold;
+  color: $custom-color;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  border-radius: 1rem;
+  border: 1px solid $border-color;
+  background-color: white;
+
+  &:hover {
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.3);
+  }
+}
+
+.approved-order-card {
+  height: 100%;
+}
+
+.custom-button {
+  width: 5rem;
+  height: 2rem;
+  background-color: $custom-color;
+  color: white;
+  border: 2px solid $custom-color;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: $custom-color 0px 1px 2px 0px, $custom-color 0px 1px 3px 1px;
+  }
+}
+
+.danger-button {
+  width: 5rem;
+  height: 2rem;
+  background-color: $logo-red;
+  color: white;
+  border: 2px solid $logo-red;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: $logo-red 0px 1px 2px 0px, $logo-red 0px 1px 3px 1px;
+  }
+}
+
+.discarded-container,
+.approved-container {
+  width: 100%;
+}
+
+.approved-container {
+  margin-bottom: 3%;
+}
+
+.discarded-container {
+  @include mediumScreen {
+    padding-bottom: 5%;
+  }
+
+  @include smallScreen {
+    padding-bottom: 5%;
+  }
+}
+
+.approved-cart-container,
+.discarded-cart-container {
+  display: flex;
+  min-height: fit-content;
+  padding: 1% 5% 0;
+  gap: 1.5rem;
+
+  @include mediumScreen {
+    flex-direction: column;
+  }
+
+  @include smallScreen {
+    flex-direction: column !important;
+  }
+
+  & > :nth-child(1) {
+    flex: 1 1 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    @include mediumScreen {
+      flex: 1 1 65%;
+    }
+
+    @include smallScreen {
+      flex: 1 1 65%;
+    }
+  }
+
+  & > :nth-child(2) {
+    flex: 1 1 25%;
+
+    @include mediumScreen {
+      flex: 1 1 35%;
+      height: 100%;
+    }
+
+    @include smallScreen {
+      flex: 1 1 35%;
+      height: 100%;
+      font-size: 12px;
+    }
+  }
+}
+
+.approved-cart-container {
+  & > :nth-child(1) {
+    padding: 1rem 2rem 1rem 0.5rem;
+
+    @include smallScreen {
+      padding: 1rem 1rem 1rem 0.2rem;
+    }
+  }
+
+  & > :nth-child(2) {
+    height: 25rem;
+  }
+}
+
+.discarded-cart-container {
+  & > :nth-child(1) {
+    padding: 1rem 3rem 1rem 1rem;
+
+    @include smallScreen {
+      padding: 1rem 2rem 1rem 1rem;
+    }
+  }
+
+  & > :nth-child(2) {
+    height: 15rem;
+  }
+}
+
+tr {
+  text-align: center;
+}
+
+td {
+  vertical-align: middle;
+}
+
+table,
+th,
+td {
+  border-collapse: separate;
+  border-spacing: 1em;
+}
+
+table {
+  @include smallScreen {
+    border-spacing: 0.2em;
+    font-size: 12px;
+  }
+}
+
+.all-approved-trs {
+  font-weight: bold;
+  color: $custom-color;
+}
+
+.discarded-header-tr,
+.all-discarded-trs {
+  font-weight: bold;
+  color: $discarded-color;
+}
+
+.approved-image-and-name-td,
+.discarded-image-and-name-td {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.approved-image-td-child,
+.discarded-image-td-child {
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  height: 3rem;
+  width: 3rem;
+  border: 1px solid $custom-color;
+  margin-right: 0.5rem;
+
+  @include smallScreen {
+    height: 2rem;
+    width: 2rem;
+  }
+}
+
+.count-greater-than-one {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.discount-percent {
+  background-color: $light-green;
+  color: $success;
+  height: fit-content;
+  border: 5px solid $light-green;
+  border-radius: 5px;
+  font-size: 12px;
+  max-width: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0.5rem;
+}
+
+.empty-approved-cart,
+.empty-discarded-cart {
+  font-weight: bold;
+}
+
+.empty-approved-cart {
+  color: $custom-color;
+}
+
+.empty-discarded-cart {
+  color: $discarded-color;
+}
+
+.approved-order-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  @include mediumScreen {
+    height: 20rem;
+  }
+
+  @include smallScreen {
+    height: 20rem;
+  }
+
+  & > :nth-child(-n + 6) {
+    flex: 1 1 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 5%;
+  }
+
+  & > :nth-child(n + 2):nth-child(-n + 5) {
+    border-bottom: 2px solid $border-color;
+    justify-content: space-between;
+  }
+
+  & > :nth-child(1) {
+    border-bottom: 2px solid $border-color;
+    justify-content: center;
+  }
+
+  & > :nth-child(6) {
+    justify-content: space-between;
+  }
+
+  & > :nth-child(n + 2):nth-child(-n + 6) {
+    & > :nth-child(1) {
+      font-weight: bold;
+    }
+  }
+
+  & > :nth-child(n + 2):nth-child(-n + 4),
+  :nth-child(6) {
+    & > :nth-child(2) {
+      color: $discarded-color;
+      font-size: small;
+    }
+  }
+
+  & > :nth-child(5) {
+    & > :nth-child(2) {
+      background-color: $light-green;
+      color: $success;
+      height: fit-content;
+      border: 5px solid $light-green;
+      border-radius: 5px;
+      font-size: 12px;
+      max-width: fit-content;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+.approved-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+
+  @include mediumScreen {
+    margin-top: 1rem;
+  }
+
+  @include smallScreen {
+    margin-top: 1rem;
+  }
+}
+
+.discarded-order-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  @include mediumScreen {
+    height: 10rem;
+  }
+
+  @include smallScreen {
+    height: 10rem;
+  }
+
+  & > :nth-child(-n + 3) {
+    flex: 1 1 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 5%;
+    color: $discarded-color;
+  }
+
+  & > :nth-child(2) {
+    border-bottom: 2px solid $border-color;
+    justify-content: space-between;
+  }
+
+  & > :nth-child(1) {
+    border-bottom: 2px solid $border-color;
+    justify-content: center;
+  }
+
+  & > :nth-child(3) {
+    justify-content: space-between;
+  }
+
+  & > :nth-child(n + 2):nth-child(-n + 3) {
+    & > :nth-child(1) {
+      font-weight: bold;
+    }
+  }
+
+  & > :nth-child(n + 2):nth-child(-n + 3) {
+    & > :nth-child(2) {
+      font-size: small;
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  padding: 15%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease-in-out;
+
+  &.open {
+    display: block;
+  }
+
+  &.close {
+    display: none;
+  }
+}
+
+.modal-content {
+  background-color: $background-color;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid $border-color;
+  width: 30%;
+  min-height: fit-content;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+
+  @include mediumScreen {
+    width: 60%;
+    position: relative;
+    top: 8rem;
+  }
+
+  @include smallScreen {
+    width: 80%;
+    position: relative;
+    top: 8rem;
+  }
+
+  & > h2 {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.modal-texts {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.close {
+  color: $discarded-color;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.avatar-custom {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: $custom-color;
+  border-radius: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
